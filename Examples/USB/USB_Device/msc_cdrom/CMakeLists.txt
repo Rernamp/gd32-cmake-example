@@ -36,3 +36,7 @@ target_link_libraries(${EXEC_NAME}
 )
 
 target_link_libraries(${EXEC_NAME}_usb_library_device ${EXEC_NAME}_gd32f450z_eval)
+
+
+gcc_add_linker_script(${EXEC_NAME} PUBLIC ${PATH_TO_LD})
+gcc_generate_bin_file(${EXEC_NAME})

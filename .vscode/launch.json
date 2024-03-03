@@ -12,6 +12,7 @@
 			"type": "cortex-debug",
 			"showDevDebugOutput": "raw",
 			"servertype": "openocd",
+            // "runToEntryPoint": "main",
 			"svdFile": "OpenOCD/GD32F4xx.svd",
 			"configFiles": [
 				"${workspaceRoot}/StLink.cfg"
