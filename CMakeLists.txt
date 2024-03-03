@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.17.0)
 project(gd32-cmake-example)
 
+set(CMAKE_OBJECT_PATH_MAX 400)
+
 enable_language(C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -10,6 +12,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/LFramework.CMake/stm32_gcc.cmake)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(USE_LTO "Enable LTO" ON)
@@ -37,8 +40,8 @@ if (${FORCE_COLORED_OUTPUT})
 endif ()
 
 add_definitions(
-	-DGD32F450
-	-DGD32F450I_EVAL
+	-DGD32F405
+	-DGD32F405I_EVAL
 )
 
 add_compile_options(
@@ -65,9 +68,11 @@ add_link_options(
 	-u _printf_float
 	-Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	-Wl,--gc-sections
-	-T${PROJECT_SOURCE_DIR}/gd32f450.ld
 )
 
 set(CMAKE_EXECUTABLE_SUFFIX .elf)
+
+set(PATH_TO_LD "${PROJECT_SOURCE_DIR}/gd32f407ve.ld"  CACHE INTERNAL "")
+set(PATH_TO_GCC_TOOLS "${PROJECT_SOURCE_DIR}/Dependencies/LFramework.CMake/stm32_gcc.cmake" CACHE INTERNAL "")
 
 add_subdirectory(Examples)

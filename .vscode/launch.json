@@ -10,15 +10,15 @@
 			"name": "Debug with OpenOCD",
 			"request": "launch",
 			"type": "cortex-debug",
-			"runToEntryPoint": "main",
-			"showDevDebugOutput": "none",
+			"showDevDebugOutput": "raw",
 			"servertype": "openocd",
 			"svdFile": "OpenOCD/GD32F4xx.svd",
 			"configFiles": [
-				"gd32f450_cmsis_dap.cfg"
+				"${workspaceRoot}/StLink.cfg"
 			],
+            "device": "GD32F405VG",
 			"searchDir": [
-				"${workspaceFolder}/OpenOCD"
+				"${workspaceFolder}\\OpenOCD"
 			]
 		}
 	]
